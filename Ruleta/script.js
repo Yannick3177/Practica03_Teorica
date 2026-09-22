@@ -39,3 +39,90 @@ function actualizarListaDesdeTexto() {
 function obtenerElementosActivos() {
   return listaElementos.filter((el) => !elementosOcultos.includes(el));
 }
+// ====== F1 + F2: DIBUJAR LA RULETA ======
+function dibujarRuleta() {
+  const activos = obtenerElementosActivos();
+  contexto.clearRect(0, 0, lienzo.width, lienzo.height);
+
+  if (activos.length === 0) {
+    contexto.beginPath();
+    contexto.arc(radio, radio, radio - 2, 0, 2 * Math.PI);
+    contexto.fillStyle = "#ddd";
+    contexto.fill();
+    return;
+  }
+
+  const anguloPorSector = (2 * Math.PI) / activos.length;
+
+  activos.forEach((elemento, indice) => {
+    const anguloInicio = anguloActual + indice * anguloPorSector;
+    const anguloFin = anguloInicio + anguloPorSector;
+
+    // sector
+    contexto.beginPath();
+    contexto.moveTo(radio, radio);
+    contexto.arc(radio, radio, radio - 2, anguloInicio, anguloFin);
+    contexto.closePath();
+    contexto.fillStyle = coloresBasicos[indice % coloresBasicos.length];
+    contexto.fill();
+    contexto.strokeStyle = "#fff";
+    contexto.lineWidth = 2;
+    contexto.stroke();
+
+    // texto
+    contexto.save();
+    contexto.translate(radio, radio);
+    contexto.rotate(anguloInicio + anguloPorSector / 2);
+    contexto.textAlign = "right";
+    contexto.fillStyle = "#222";
+    contexto.font = "bold 20px Arial";
+    contexto.fillText(elemento, radio - 20, 8);
+    contexto.restore();
+  });
+}
+// ====== F1: DETERMINAR EL ELEMENTO BAJO EL TRIÁNGULO (lado derecho = ángulo 0) ======
+function calcularSeleccionado() {
+  const activos = obtenerElementosActivos();
+  if (activos.length === 0) return "";
+  const anguloPorSector = (2 * Math.PI) / activos.length;
+  // normalizar el ángulo actual a [0, 2π)
+  let anguloNormalizado = anguloActual % (2 * Math.PI);
+  if (anguloNormalizado < 0) anguloNormalizado += 2 * Math.PI;
+  // el indicador está a la derecha (ángulo 0). Sector = cuánto retrocede desde 0
+  const indice = Math.floor(
+    ((2 * Math.PI - anguloNormalizado) % (2 * Math.PI)) / anguloPorSector
+  );
+  return activos[indice];
+}
+
+// ====== F3: GIRAR LA RULETA ALEATORIAMENTE ======
+function girarRuleta() {
+  if (estaGirando) return;
+  const activos = obtenerElementosActivos();
+  if (activos.length === 0) return;
+
+  estaGirando = true;
+  const vueltasExtra = 5 + Math.random() * 5;   // entre 5 y 10 vueltas
+  const anguloFinal = anguloActual + vueltasExtra * 2 * Math.PI;
+  const anguloInicial = anguloActual;
+  const duracion = 4000;
+  const tiempoInicio = performance.now();
+
+  function animar(tiempoActual) {
+    const transcurrido = tiempoActual - tiempoInicio;
+    const progreso = Math.min(transcurrido / duracion, 1);
+    // easing para desacelerar
+    const suavizado = 1 - Math.pow(1 - progreso, 3);
+    anguloActual = anguloInicial + (anguloFinal - anguloInicial) * suavizado;
+    dibujarRuleta();
+
+    if (progreso < 1) {
+      requestAnimationFrame(animar);
+    } else {
+      estaGirando = false;
+      ultimoSeleccionado = calcularSeleccionado();
+      cajaRespuesta.textContent = ultimoSeleccionado;
+    }
+  }
+  requestAnimationFrame(animar);
+}
