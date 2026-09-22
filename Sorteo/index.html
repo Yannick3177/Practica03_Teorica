@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sorteo de Equipos</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="contenedor">
+      <!-- ========== PANTALLA 1: CONFIGURACIÓN ========== -->
+      <div id="pantallaConfig">
+        <h1>Crea equipos al azar a partir de una lista de nombres.</h1>
+        <div class="grid-config">
+          <!-- Columna izquierda: participantes -->
+          <div class="columna">
+            <p class="encabezado-pequeno">1. Ingresa los participantes</p>
+            <textarea
+              id="areaParticipantes"
+              placeholder="Cada participante debe estar en una nueva línea"
+              maxlength="5000"
+            ></textarea>
+            <div class="contador">
+              <span id="contadorParticipantes">0</span>
+            </div>
+            <p class="nota">
+              Máximo 100 participantes, hasta 50 caracteres cada uno.
+            </p>
+          </div>
+
+          <!-- Columna derecha: configuración -->
+          <div class="columna">
+            <p class="encabezado-pequeno">2. Cómo dividir:</p>
+            <div class="opciones-radio">
+              <label>
+                <input type="radio" name="modo" value="equipos" checked />
+                Cantidad de equipos
+              </label>
+              <label>
+                <input type="radio" name="modo" value="porEquipo" />
+                Participantes por equipo
+              </label>
+            </div>
+            <select id="selectorCantidad">
+              <!-- se llena por JS -->
+            </select>
+
+            <p class="encabezado-pequeno" style="margin-top: 1rem">3. Título</p>
+            <input
+              type="text"
+              id="campoTitulo"
+              placeholder="Copa del Mundo Qatar 2022"
+            />
+
+            <div class="fila-botones">
+              <button class="btn-limpiar" id="botonLimpiar">Limpiar</button>
+              <button class="btn-generar" id="botonGenerar">
+                Generar equipos
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== PANTALLA 2: RESULTADOS ========== -->
+      <div id="pantallaResultados">
+        <h2 class="titulo-resultados" id="tituloResultados">Equipos</h2>
+        <div class="grid-equipos" id="gridEquipos"></div>
+
+        <div class="fila-botones-resultado">
+          <button class="btn-accion" id="botonDescargar">Descargar JPG</button>
+          <button class="btn-accion" id="botonCopiar">
+            Copiar al portapapeles
+          </button>
+          <button class="btn-accion" id="botonCopiarColumnas">
+            Copiar por columnas
+          </button>
+          <button class="btn-volver" id="botonVolver">← Volver</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
