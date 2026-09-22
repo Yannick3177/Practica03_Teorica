@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aula Virtual — Ruleta</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="contenedor">
+      <!-- Barra superior -->
+      <div class="barra-superior">
+        <div class="respuesta" id="respuesta">RESPUESTA</div>
+        <button class="btn-iniciar" id="botonIniciar">Iniciar</button>
+        <button class="btn-reiniciar" id="botonReiniciar">Reiniciar</button>
+      </div>
+
+      <div class="zona-principal">
+        <!-- Ruleta -->
+        <div class="zona-ruleta">
+          <canvas id="lienzoRuleta" width="420" height="420"></canvas>
+          <div class="indicador"></div>
+          <div class="boton-centro">haz clic para girarlo</div>
+        </div>
+
+        <!-- Panel derecho -->
+        <div class="panel-derecho">
+          <textarea id="areaElementos" placeholder="Escribe un elemento por línea"></textarea>
+          <div class="fila-controles">
+            <button id="botonTitulo">Título</button>
+            <button id="botonEditar">Editar</button>
+            <button id="botonEsconder">esconder…</button>
+          </div>
+          <div class="ayuda-teclas">
+            <div><span class="tecla">SPACE</span> Gíralo</div>
+            <div><span class="tecla">S</span> Ocultar el elemento seleccionado</div>
+            <div><span class="tecla">R</span> Reiniciar</div>
+            <div><span class="tecla">E</span> Editar</div>
+            <div><span class="tecla">F</span> Pantalla completa</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
