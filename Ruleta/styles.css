@@ -106,3 +106,19 @@ textarea {
   font-weight: normal;
   border: 1px solid #ccc;
 }
+.ayuda-teclas {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: #555;
+}
+.ayuda-teclas div { margin-bottom: 0.35rem; }
+.tecla {
+  display: inline-block;
+  background: #fff;
+  border: 1px solid #999;
+  border-radius: 4px;
+  padding: 0.1rem 0.45rem;
+  font-family: monospace;
+  font-weight: bold;
+  margin-right: 0.4rem;
+}
