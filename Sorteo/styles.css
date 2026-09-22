@@ -1,0 +1,157 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #eceef3;
+  color: #222;
+  padding: 1.5rem;
+}
+.contenedor {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 6px 20px -10px rgba(0, 0, 0, 0.25);
+}
+h1 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+.encabezado-pequeno {
+  font-size: 0.95rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+.grid-config {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.columna {
+  flex: 1;
+  min-width: 260px;
+}
+textarea {
+  width: 100%;
+  height: 220px;
+  resize: vertical;
+  padding: 0.6rem;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-family: inherit;
+}
+.contador {
+  text-align: right;
+  font-size: 0.8rem;
+  color: #888;
+  margin-top: 0.25rem;
+}
+label {
+  display: block;
+  margin: 0.5rem 0 0.25rem;
+  font-size: 0.9rem;
+}
+select,
+input[type="text"] {
+  width: 100%;
+  padding: 0.55rem;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+.opciones-radio {
+  margin-bottom: 0.75rem;
+}
+.opciones-radio label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-right: 1rem;
+}
+.fila-botones {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem 1.3rem;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+.btn-limpiar {
+  background: #fff;
+  color: #c0286b;
+  border: 1px solid #c0286b;
+}
+.btn-generar {
+  background: #c0286b;
+  color: #fff;
+}
+.nota {
+  font-size: 0.8rem;
+  color: #888;
+  margin-top: 0.75rem;
+}
+
+/* Pantalla de resultados */
+#pantallaResultados {
+  display: none;
+}
+.titulo-resultados {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.grid-equipos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+.equipo {
+  border: 2px solid #c0286b;
+  border-radius: 10px;
+  padding: 1rem;
+  min-width: 180px;
+  flex: 1;
+  max-width: 220px;
+}
+.equipo h3 {
+  text-align: center;
+  color: #c0286b;
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+}
+.equipo ul {
+  list-style: none;
+}
+.equipo li {
+  padding: 0.4rem 0.5rem;
+  background: #faf0f5;
+  border-radius: 5px;
+  margin-bottom: 0.35rem;
+  font-size: 0.9rem;
+}
+.fila-botones-resultado {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+.btn-accion {
+  background: #444;
+  color: #fff;
+}
+.btn-volver {
+  background: #eee;
+  color: #333;
+}
