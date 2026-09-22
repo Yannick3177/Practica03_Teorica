@@ -126,3 +126,38 @@ function girarRuleta() {
   }
   requestAnimationFrame(animar);
 }
+// ====== F7: OCULTAR EL ÚLTIMO SELECCIONADO (tecla S) ======
+function ocultarSeleccionado() {
+  if (!ultimoSeleccionado) return;
+  if (!elementosOcultos.includes(ultimoSeleccionado)) {
+    elementosOcultos.push(ultimoSeleccionado);
+  }
+  resaltarEnTextarea(ultimoSeleccionado);
+  dibujarRuleta();
+}
+
+// Resalta en gris (selección) el último sorteado dentro del textarea
+function resaltarEnTextarea(texto) {
+  const contenido = areaElementos.value;
+  const inicio = contenido.indexOf(texto);
+  if (inicio >= 0) {
+    areaElementos.focus();
+    areaElementos.setSelectionRange(inicio, inicio + texto.length);
+  }
+}
+// ====== F8: REINICIAR (tecla R o botón) ======
+function reiniciar() {
+  elementosOcultos = [];
+  ultimoSeleccionado = "";
+  cajaRespuesta.textContent = "RESPUESTA";
+  dibujarRuleta();
+}
+
+// ====== F9: PANTALLA COMPLETA (tecla F) ======
+function alternarPantallaCompleta() {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen();
+  } else {
+    document.exitFullscreen();
+  }
+}
