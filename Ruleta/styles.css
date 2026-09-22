@@ -39,3 +39,43 @@ button {
 }
 .btn-iniciar { background: #2d8cff; color: #fff; }
 .btn-reiniciar { background: #e23b5b; color: #fff; }
+/* Zona principal: ruleta + panel */
+.zona-principal {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+.zona-ruleta {
+  position: relative;
+  flex: 0 0 auto;
+}
+canvas { cursor: pointer; display: block; }
+
+/* Triángulo rojo indicador (F1) */
+.indicador {
+  position: absolute;
+  top: 50%;
+  right: -6px;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-right: 26px solid #e0002b;
+  z-index: 5;
+}
+/* Botón central de la ruleta */
+.boton-centro {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #333;
+  color: #fff;
+  border-radius: 6px;
+  padding: 0.6rem 1rem;
+  font-size: 0.95rem;
+  pointer-events: none;
+  white-space: nowrap;
+}
