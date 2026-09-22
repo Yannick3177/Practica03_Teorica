@@ -161,3 +161,52 @@ function alternarPantallaCompleta() {
     document.exitFullscreen();
   }
 }
+// ====== EVENTOS ======
+// Click sobre la ruleta -> girar
+lienzo.addEventListener("click", girarRuleta);
+document.getElementById("botonIniciar").addEventListener("click", girarRuleta);
+document.getElementById("botonReiniciar").addEventListener("click", reiniciar);
+
+// F4 + F6: editar textarea -> guardar y actualizar ruleta automáticamente
+areaElementos.addEventListener("input", function () {
+  guardarDatos();
+  actualizarListaDesdeTexto();
+});
+
+// Botón editar / click en textarea -> enfocar para edición
+document.getElementById("botonEditar").addEventListener("click", () => areaElementos.focus());
+
+// Botón esconder -> oculta el seleccionado
+document.getElementById("botonEsconder").addEventListener("click", ocultarSeleccionado);
+
+// Botón título -> agrega una cabecera al textarea
+document.getElementById("botonTitulo").addEventListener("click", function () {
+  const titulo = prompt("Título de la ruleta:");
+  if (titulo) {
+    cajaRespuesta.textContent = titulo;
+  }
+});
+// Teclas: SPACE gira, S oculta, R reinicia, E edita, F pantalla completa
+document.addEventListener("keydown", function (evento) {
+  // si estás escribiendo en el textarea, solo respetamos ediciones
+  const escribiendo = document.activeElement === areaElementos;
+
+  if (evento.code === "Space" && !escribiendo) {
+    evento.preventDefault();
+    girarRuleta();
+  } else if ((evento.key === "s" || evento.key === "S") && !escribiendo) {
+    ocultarSeleccionado();
+  } else if ((evento.key === "r" || evento.key === "R") && !escribiendo) {
+    reiniciar();
+  } else if (evento.key === "e" || evento.key === "E") {
+    if (!escribiendo) {
+      evento.preventDefault();
+      areaElementos.focus();
+    }
+  } else if ((evento.key === "f" || evento.key === "F") && !escribiendo) {
+    alternarPantallaCompleta();
+  }
+});
+
+// ====== INICIO ======
+recuperarDatos();
